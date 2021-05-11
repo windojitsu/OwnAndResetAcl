@@ -1,0 +1,17 @@
+Recursively take ownership and reset ACL for files/directories, without 
+following symlinks or failing when traversing long paths.. This is especially 
+useful for reclaiming control over a problematic "Windows.old" directory tree.
+
+Usage: 
+	OwnAndResetAcl.exe {file|directory}
+
+- Must be run from elevated (Administrator) cmd prompt.
+
+- Supports path names longer than 260, when given an absolute path in the form 
+	"\\?\X:\Very\Long\Path"
+
+Example: 
+	OwnAndResetAcl "\\?\D:\Windows.old"
+
+NOTE: The target file/directory will be owned by the Builtin\Administrators 
+group, and have a DACL which explicitly grants Everyone full-control.
